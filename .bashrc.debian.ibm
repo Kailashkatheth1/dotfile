@@ -1,0 +1,99 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Get the pure PS1 and ls/grep/... for running the autotest
+#if [ "$autotest" == "yes" ]; then
+#  return 0
+#fi
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# Source bash completion
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+
+#export PS1=\\s-\\v\\$
+#export PS1='\h:\w\$ '
+# Following PS1 is greg KH's PS1
+#export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+export PS1='\033[01;32m[\u@\h]\033[0m \033[0;36m\w\033[0m
+\$ '
+umask 022
+
+# User specific aliases and functions
+# You may uncomment the following lines if you want `ls' to be colorized:
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+alias grep='grep -n --color=always'
+
+# Work more fast in fips code alias gr='grep --color -n -r'
+alias g='grep -r'
+alias gir='grep -ir'
+alias gch='grep --include=\*.{C,c,cpp,H,h} -r'
+alias gchi='grep --include=\*.{C,c,cpp,H,h} -ir'
+alias his='history 20'
+alias psu='ps -l U johnnycy'
+alias f='find . -name'
+alias vd='vimdiff'
+alias vdo='vimdiff -o'
+alias vp='vim -p'
+#alias m='mk clobber_all && mk -a'
+alias diffcr='diff -urp'
+
+# List the extension filename under the current folder
+alias dotags='ctags -R -h ".h.H.c.C"'
+
+# Autotest temporary directory for localhost.logfile
+#alias mkdirdate='mkdir `hostname -a`-`date +%H%M%S.%m%d%y`; cd `hostname -a`-`date +%H%M%S.%m%d%y`'
+
+#
+# Some more alias to avoid making mistakes:
+alias rm='rm -i'
+# alias cp='cp -i'
+# comment it for SPCN autotest used
+# alias mv='mv -i'
+
+# For colourful man pages (CLUG-Wiki style)
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+# For Backing Build directory
+#export bbpowr=${bb}src/powr/fsp
+#export sbpowr=$sb/powr/fsp
+#export fips_rel=810
+#export bbpowr=/esw/fips$fips_rel/Builds/b0614a_1325.810/src/powr/fsp
+#export ccpowr=/esw/fips$fips_rel/Current/current/src/powr/fsp
+
+# For Simics mount nfs
+#export nfs=/esw/user/nfs/johnnycy
+
+# Setup CMVC environment variables for the subsequent scripts and tools
+#export CMVC_RELEASE=fips810
+#export CMVC_BECOME=johnnycy
+#export CMVC_BASE_RELEASE=fips
+#export CMVC_FAMILY=aix@auscmvc1.austin.ibm.com@2035
+#export CMVC_AUTH_METHOD=HOST
+
+# For git auto-completion
+source ~/.git-completion.bash
+
+# Add my bin path to $PATH, add more ...
+#PATH=$PATH:/usr/local/bin:/home/johnnycy/bin:/home/johnnycy/fips_dev/sh4dev/Fan:/home/team/spcn/autotest:/home/johnnycy/dbg_tools
+PATH=$PATH:/home/johnnycy/dev_tools:/home/johnnycy/lenovo_project/utility/code_co_utility/Prj2Pkg:/home/johnnycy/lenovo_project/utility/code_co_utility/
+
+# Change default en_US.UTF-8 to C for preventing the nonsense characters
+LANG=C
+
+#complete -A hostname -C "/usr/bin/perl -e 'my \$match = \$ARGV[1] ? \$ARGV[1] : \".*\"; open(my \$INPUT,\"<\",\"$HOME/.ssh/config\") or exit(0); foreach(<\$INPUT>) {next unless s/^\s*Host(name)?\s+//;chomp;foreach(split(/\s+/)) { print \"\$_\\n\" if(/^\$match/ and not /^\d/ and not /\*/);}}'" ssh
+# end of ~/.bashrc

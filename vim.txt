@@ -1,0 +1,14 @@
+- To convert all text to lowercase in vim
+ggVGu
+:%s/[A-Z]/\L&/g
+
+- To convert all text to uppercase in vim
+ggVGU
+:%s/[A-Z]/\U&/g
+
+- Block comment
+clt+v
+#drop down using arrow key
+shif+i
+shift+#
+Esc
