@@ -1,0 +1,35 @@
+function! VsplitBackingTreeFile()
+    let orgcwd = getcwd()
+    exec 'cd '.$sb.'/..'
+    let backingfile=$bb . expand('%')
+    exec 'vertical split '. backingfile
+    exec 'cd '.orgcwd
+endfunction
+
+function! OpenBackingTreeFile()
+    let orgcwd = getcwd()
+    exec 'cd '.$sb.'/..'
+    let backingfile=$bb . '/' . expand('%')
+    exec 'edit '. backingfile
+    exec 'cd '.orgcwd
+endfunction
+
+function! DiffCurrFile()
+    let orgcwd = getcwd()
+    exec 'cd '.$sb.'/..'
+    let backingfile=$curr . '/../' . expand('%')
+    exec 'vertical diffsplit '. backingfile
+    exec 'cd '.orgcwd
+endfunction
+
+function! DiffBackingTreeFile()
+    let orgcwd = getcwd()
+    exec 'cd '.$sb.'/..'
+    let backingfile=$bb . '/' . expand('%')
+    exec 'vertical diffsplit '. backingfile
+    exec 'cd '.orgcwd
+endfunction
+
+function! DiffSbxFile()
+    exec 'vertical diffsplit '.substitute(expand("%"), $bb, $sb."/../", "" )
+endfunction
