@@ -1,3 +1,16 @@
+- Basic operations
+,w  - fast save
+,wa - fast save all
+,q  - fast quit
+,qa - fast quit all
+F2  - remove indenting on empty line
+F3  - display the line of cursor position
+F5  - display function, define, etc...
+F6  - display windows manager
+F9  - vimgrep the pattern and display in the quickfix window
+F10 - close quickfix window
+F12 - insert timestamp and username
+
 - To convert all text to lowercase in vim
 ggVGu
 :%s/[A-Z]/\L&/g
